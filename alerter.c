@@ -14,10 +14,14 @@ int networkAlertStub(float celcius) {
     // Return 200 for ok
     // Return 500 for not-ok
     if(celcius >= MIN_THRESHOLD && celcius <=MAX_THRESHOLD)
+    {
         return 200;
+    }
     else
+    {
         checkFailureCount +=1;
         return 500;
+    }
 }
 
 void alertInCelcius(float farenheit) {
