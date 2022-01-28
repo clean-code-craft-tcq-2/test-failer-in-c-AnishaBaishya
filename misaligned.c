@@ -12,7 +12,7 @@ struct Struct_ColourCode
 const char* majorColor[] = {"White", "Red", "Black", "Yellow", "Violet"};
 const char* minorColor[] = {"Blue", "Orange", "Green", "Brown", "Slate"};
 
-int printColorMapStub(void (*Fn_Ptr_printColourPairAndCode)(int,int,  char*,  char* ));
+int printColorMapStub(void (*Fn_Ptr_printColourPair)(int,int,  char*,  char* ));
 Struct_ColourCode CopyColourInfo(int majorColourIndex, int minorColourIndex);
 void printColourPairAndCodeStub(int colorCode, char* majorColor, char* minorColor);
  
@@ -32,7 +32,7 @@ int printColorMap() {
 }
 
 // Dependency Injection
-int printColorMapStub(void (*Fn_Ptr_printColourPairAndCode)(int,int, char*,  char* ))
+int printColorMapStub(void (*Fn_Ptr_printColourPair)(int,int, char*,  char* ))
 {
 
     int majorColourIndex = 0; 
@@ -43,7 +43,7 @@ int printColorMapStub(void (*Fn_Ptr_printColourPairAndCode)(int,int, char*,  cha
         for(minorColourIndex = 0; minorColourIndex < 5; minorColourIndex++) 
         {
             ColourInfo = CopyColourInfo(majorColourIndex,minorColourIndex);
-            Fn_Ptr_printColourPairAndCode(majorColourIndex,minorColourIndex,ColourInfo.majorColour,ColourInfo.minorColour);
+            Fn_Ptr_printColourPair(majorColourIndex,minorColourIndex,ColourInfo.majorColour,ColourInfo.minorColour);
         }
     }
 
@@ -60,7 +60,7 @@ Struct_ColourCode CopyColourInfo(int majorColourIndex, int minorColourIndex)
     return ColourInfo;   
 }
 
-void printColourPairAndCodeStub(int majorColourIndex, int minorColourIndex,  char* majorColor,  char* minorColor)
+void printColourPairStub(int majorColourIndex, int minorColourIndex,  char* majorColor,  char* minorColor)
 {
     printf("%d | %s | %s\n", majorColourIndex * 5 + minorColourIndex, majorColor, minorColor);
     ColorCodePairNoToBePrintedInConsole++;
@@ -72,7 +72,7 @@ int main() {
     int test_majorColourIndex = 0;
     int test_minorColourIndex = 0;
     int test_expectedColourCode = 0;
-    void (*Fn_Ptr)(int,int,  char*,  char*) = printColourPairAndCodeStub;
+    void (*Fn_Ptr)(int,int,  char*,  char*) = printColourPairStub;
     test_colourInfo = CopyColourInfo(test_majorColourIndex,test_minorColourIndex);
     test_expectedColourCode = (test_majorColourIndex * 5 + test_minorColourIndex);
     assert(test_colourInfo.colourCode == test_expectedColourCode);
