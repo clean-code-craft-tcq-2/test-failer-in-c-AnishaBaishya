@@ -22,7 +22,7 @@ int printColorMap(void (*Fn_Ptr_printColourPairStub)(Struct_ColourCode)) {
     int i = 0, j = 0;
     for(i = 0; i < 5; i++) {
         for(j = 0; j < 5; j++) {
-            printColourPairStub(CopyColourInfo(i,j));
+            Fn_Ptr_printColourPairStub(CopyColourInfo(i,j));
         }
     }
     return i * j;
@@ -32,8 +32,8 @@ Struct_ColourCode CopyColourInfo(int majorColourIndex, int minorColourIndex)
 {
    
     Struct_ColourCode ColourInfo;
-    strcpy(ColourInfo.majorColour, majorColor[majorColourIndex]);
-    strcpy(ColourInfo.minorColour, minorColor[minorColourIndex]);
+    ColourInfo.majorColour=majorColor[majorColourIndex];
+    ColourInfo.minorColour=minorColor[minorColourIndex];
     ColourInfo.colourCode = (5 * majorColourIndex) + minorColourIndex + 1;
     return ColourInfo;   
 }
