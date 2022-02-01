@@ -43,11 +43,25 @@ void printColourPairStub(Struct_ColourCode ColorPairReceived)
     printf("%d | %s | %s\n", ColorPairReceived.colourCode, ColorPairReceived.majorColour, ColorPairReceived.minorColour);
 }
 
+void unitTestColorMapforRandomPairNumber(int expectedNumberPair) {
+    int i = (expectedNumberPair-1)/5;
+	int j = (expectedNumberPair-1)%5;
+    
+	Struct_ColourCode testColorpair = CopyColourInfo(i,j);
+ 	assert(testColorpair.colourCode == expectedNumberPair);
+ 	assert(testColorpair.majorColour == majorColor[i]);
+ 	assert(testColorpair.minorColour == minorColor[j]);
+}
+
 
 int main() {
     void (*Fn_Ptr)(Struct_ColourCode) = printColourPairStub;
     int result = printColorMap(Fn_Ptr);
     assert(result == 25);
+    
+    for(int i=1; i<=25; i++)
+    unitTestColorMapforRandomPairNumber(i);
+    
     printf("All is well (maybe!)\n");
     return 0;
 }
