@@ -18,7 +18,7 @@ void printColourPairStub(Struct_ColourCode);
  
 
 // Source Code 
-int printColorMap(void (*Fn_Ptr_printColourPairStub)(ColorPair)) {
+int printColorMap(void (*Fn_Ptr_printColourPairStub)(Struct_ColourCode)) {
     const char* majorColor[] = {"White", "Red", "Black", "Yellow", "Violet"};
     const char* minorColor[] = {"Blue", "Orange", "Green", "Brown", "Slate"};
     int i = 0, j = 0;
