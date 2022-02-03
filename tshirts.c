@@ -20,7 +20,7 @@ char size(int cms) {
     return sizeName;
 }
 
-int main() {
+void testTshirtSize() {
     assert(size(-2) == '!');
     assert(size(20) == '!');
     assert(size(36) == 'S');
@@ -33,6 +33,11 @@ int main() {
     assert(size(43) == 'L');
     assert(size(44) == 'L');
     assert(size(50) == '!');
+}
+
+int main() {
+    testTshirtSize();
+    
     printf("All is well (maybe!)\n");
     return 0;
 }
