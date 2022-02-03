@@ -27,7 +27,7 @@ float ConvertFarenheitToCelsius(float farenheit)
     return (farenheit - 32) * 5 / 9;
 }
 
-void alertInCelcius(float farenheit,void (*Fn_Ptr_networkAlertStub)(float)) {
+void alertInCelcius(float farenheit,int (*Fn_Ptr_networkAlertStub)(float)) {
     float celcius = ConvertFarenheitToCelsius(farenheit);
     int returnCode = Fn_Ptr_networkAlertStub(celcius);
     if (returnCode != 200) {
@@ -41,7 +41,7 @@ void alertInCelcius(float farenheit,void (*Fn_Ptr_networkAlertStub)(float)) {
 
 int main() {
     
-    void (*Fn_Ptr)(float) = networkAlertStub;
+    int (*Fn_Ptr)(float) = networkAlertStub;
     
     alertInCelcius(400.5,Fn_Ptr);
     alertInCelcius(303.6,Fn_Ptr);
