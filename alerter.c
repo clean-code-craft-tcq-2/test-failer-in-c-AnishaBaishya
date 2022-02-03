@@ -22,9 +22,14 @@ int networkAlertStub(float celcius) {
     }
 }
 
-void alertInCelcius(float farenheit) {
-    float celcius = (farenheit - 32) * 5 / 9;
-    int returnCode = networkAlertStub(celcius);
+float ConvertFarenheitToCelsius(float farenheit)
+{
+    return (farenheit - 32) * 5 / 9;
+}
+
+void alertInCelcius(float farenheit,void (*Fn_Ptr_networkAlertStub)(float)) {
+    float celcius = ConvertFarenheitToCelsius(farenheit);
+    int returnCode = Fn_Ptr_networkAlertStub(celcius);
     if (returnCode != 200) {
         // non-ok response is not an error! Issues happen in life!
         // let us keep a count of failures to report
@@ -35,8 +40,12 @@ void alertInCelcius(float farenheit) {
 }
 
 int main() {
-    alertInCelcius(400.5);
-    alertInCelcius(303.6);
+    
+    void (*Fn_Ptr)(int) = networkAlertStub;
+    
+    alertInCelcius(400.5,Fn_Ptr);
+    alertInCelcius(303.6,Fn_Ptr);
+    
     assert(alertFailureCount == checkFailureCount);
     printf("All is well (maybe!)\n");
     return 0;
