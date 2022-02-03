@@ -41,7 +41,7 @@ void alertInCelcius(float farenheit,void (*Fn_Ptr_networkAlertStub)(float)) {
 
 int main() {
     
-    void (*Fn_Ptr)(int) = networkAlertStub;
+    void (*Fn_Ptr)(float) = networkAlertStub;
     
     alertInCelcius(400.5,Fn_Ptr);
     alertInCelcius(303.6,Fn_Ptr);
