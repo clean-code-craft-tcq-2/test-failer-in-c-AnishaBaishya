@@ -27,9 +27,9 @@ float ConvertFarenheitToCelsius(float farenheit)
     return (farenheit - 32) * 5 / 9;
 }
 
-void alertInCelcius(float farenheit,int (*Fn_Ptr_networkAlertStub)(float)) {
+void alertInCelcius(float farenheit,int (*Fn_Ptr_networkAlert)(float)) {
     float celcius = ConvertFarenheitToCelsius(farenheit);
-    int returnCode = Fn_Ptr_networkAlertStub(celcius);
+    int returnCode = Fn_Ptr_networkAlert(celcius);
     if (returnCode != 200) {
         // non-ok response is not an error! Issues happen in life!
         // let us keep a count of failures to report
